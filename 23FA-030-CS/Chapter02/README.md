@@ -1,4 +1,4 @@
-1) Barrier.py
+1) Barrier.py:
 This file demonstrates thread synchronization using a Barrier, where multiple threads must all reach a certain point before any of them can proceed further, implementing phase-based execution.
 - Barrier: Synchronize the progress of multiple threads or processes, ensuring that no thread proceeds until all have reached a certain point.
 - Thread coordination: Ensures correct ordering and phase completion.
@@ -11,6 +11,7 @@ Advantages:
 - Guarantees synchronization across threads.
 - Useful in parallel algorithms with multiple stages/phases.
 - Prevents premature execution of dependent tasks.
+  
 Disadvantages:
 - Performance bottleneck: all threads must wait for the slowest one.
 - Can lead to idle time if thread workloads are unbalanced.
@@ -19,7 +20,7 @@ Disadvantages:
 Time behavior:
 - Total execution time depends on the slowest runner (thread).
 
-2) Condition.py
+2) Condition.py:
 This file demonstrates thread synchronization using a Condition variable, where threads wait for a specific condition (state) and get notified when it changes, implementing controlled communication between threads.
 - Condition: A synchronization mechanism where a thread waits for a condition and another thread notifies it when the condition is met.
 - Combines locking + signaling, ensuring safe access to shared resources.
@@ -34,6 +35,7 @@ Advantages:
 - Provides fine control over thread coordination.
 - Prevents race conditions by synchronizing access to shared data.
 - Useful in producer-consumer and state-based problems.
+  
 Disadvantages:
 - Can cause blocking or starvation if one thread is slow.
 - Risk of deadlock if notify/wait is misused.
@@ -43,7 +45,7 @@ Time behavior:
 - Performance depends on producer-consumer speed balance.
 - Threads may spend time waiting, reducing efficiency if poorly balanced.
 
-3) Event.py
+3) Event.py:
 This file demonstrates thread synchronization using an Event, where one thread signals another using a simple flag mechanism for communication.
 - Event: A synchronization tool where one thread waits for a signal and another thread triggers it.
 - Uses an internal flag controlled by set(), clear(), and wait().
@@ -57,6 +59,7 @@ Advantages:
 - Simple and easy way to signal between threads.
 - Less complex than condition variables.
 - Useful for one-time or repeated signaling events.
+  
 Disadvantages:
 - Not suitable for complex synchronization scenarios.
 - If events are missed or cleared incorrectly, threads may wait indefinitely.
@@ -66,7 +69,7 @@ Time behavior:
 - Execution depends on event signaling frequency.
 - Threads may remain idle while waiting for events, affecting performance.
 
-4) MyThreadClass_lock.py
+4) MyThreadClass_lock.py:
 This file demonstrates thread synchronization using a Lock, where only one thread can access the critical section at a time, ensuring mutual exclusion.
 - Lock: A synchronization mechanism that allows only one thread to access a shared resource at a time.
 - Each thread is created using a custom class MyThreadClass that extends Thread.
@@ -80,6 +83,7 @@ Advantages:
 - Prevents race conditions and ensures data consistency.
 - Simple and effective for critical section protection.
 - Guarantees safe execution order.
+  
 Disadvantages:
 - Reduces parallelism since threads run one at a time.
 - Can lead to performance slowdown.
@@ -89,7 +93,7 @@ Time behavior:
 - Execution is almost sequential, so total time ≈ sum of all thread durations.
 - Slower compared to parallel execution because threads wait for the lock.
 
-5) MyThreadClass_lock2.py
+5) MyThreadClass_lock2.py:
 This file demonstrates an optimized use of Lock, where the lock is only used for a small critical section, allowing better parallel execution.
 - Lock: Used only to protect the print statement, not the entire execution.
 - Each thread acquires the lock briefly, prints its start message, and releases the lock immediately.
@@ -103,6 +107,7 @@ Advantages:
 - Improves parallelism and performance compared to full locking.
 - Reduces waiting time for threads.
 - Maintains safety for critical sections while allowing concurrency.
+  
 Disadvantages:
 - Requires careful design to identify what needs locking.
 - Incorrect placement may still cause race conditions.
@@ -112,7 +117,7 @@ Time behavior:
 - Faster than MyThreadClass_lock.py because threads run mostly in parallel.
 - Execution time depends on the longest thread, not the sum of all durations.
 
-6) Rlock.py
+6) Rlock.py:
 This file demonstrates thread synchronization using a Reentrant Lock (RLock).
 - RLock: A special lock that can be acquired multiple times by the same thread, unlike a normal lock.
 - The Box class contains a shared variable total_items and an RLock for synchronization.
@@ -126,6 +131,7 @@ Advantages:
 - Prevents deadlock in nested lock scenarios.
 - Ensures safe access to shared resources.
 - Useful in recursive or layered function calls.
+  
 Disadvantages:
 - Slight performance overhead compared to normal locks.
 - More complex than simple locks.
@@ -135,7 +141,7 @@ Time behavior:
 - Similar to normal locking, but slightly slower due to extra overhead of reentrancy.
 - Execution depends on thread scheduling and sleep delays.
 
-7) Semaphore.py
+7) Semaphore.py:
 This file demonstrates thread synchronization using a Semaphore.
 - Semaphore: A synchronization primitive that allows a limited number of threads to access a resource.
 - Initialized as Semaphore(0), meaning consumer must wait until producer signals.
@@ -150,6 +156,7 @@ Advantages:
 - Allows controlled access (not just one thread like locks).
 - Prevents race conditions and ensures correct execution order.
 - Useful for resource management and producer-consumer problems.
+  
 Disadvantages:
 - Can be harder to understand and debug than locks.
 - Incorrect usage may lead to deadlock or resource starvation.
@@ -159,7 +166,7 @@ Time behavior:
 - Threads may spend time waiting on semaphore signals.
 - Performance depends on producer-consumer timing and synchronization efficiency.
 
-8) Thread_definition.py
+8) Thread_definition.py:
 This file demonstrates basic thread creation and execution in Python using the threading module.
 - Thread: An independent execution unit that can run concurrently with others.
 - A simple function my_func() is defined, which prints the thread number.
@@ -170,6 +177,7 @@ This file demonstrates basic thread creation and execution in Python using the t
 Advantages:
 - Easy to understand how threads run functions with arguments.
 - Useful for learning thread basics.
+  
 Disadvantages:
 - Threads run sequentially due to immediate join(), so no real parallelism.
 - Does not utilize full benefits of multithreading.
@@ -179,7 +187,7 @@ Time behavior:
 - Total time ≈ sum of execution of all threads (like serial execution).
 - No speedup because threads do not overlap.
 
-9) Thread_determine.py
+9) Thread_determine.py:
 This file demonstrates thread identification and concurrent execution, showing how multiple threads run simultaneously and how to determine their names.
 - Uses threading.currentThread().getName() to identify which thread is running.
 - Three functions (function_A, function_B, function_C) are defined, each simulating work using sleep(2).
@@ -190,6 +198,7 @@ Advantages:
 - Demonstrates true concurrent execution of threads.
 - Helps in debugging and tracking threads using names.
 - Better utilization of time compared to sequential execution.
+  
 Disadvantages:
 - Output order may be unpredictable due to scheduling.
 - No synchronization used, so not safe for shared data.
@@ -199,7 +208,7 @@ Time behavior:
 - Total time ≈ time of the longest thread, not sum.
 - Faster than sequential execution because threads run concurrently.
 
-10) Thread_name_and_processes.py
+10) Thread_name_and_processes.py:
 This file demonstrates thread creation and identification using thread names, showing how multiple threads run within the same process.
 - A custom class MyThreadClass extends Thread and overrides the run() method.
 - When executed, each thread prints its name, showing which thread is running.
@@ -209,6 +218,7 @@ This file demonstrates thread creation and identification using thread names, sh
 Advantages:
 - Helps in debugging and tracking threads using names.
 - Simple demonstration of thread lifecycle (start → run → join).
+  
 Disadvantages:
 - No synchronization or shared resource handling.
 - Limited practical use beyond demonstration.
@@ -216,7 +226,7 @@ Disadvantages:
 Time behavior:
 - Threads execute concurrently, so total time is minimal.
 
-11) Threading_with_queue.py
+11) Threading_with_queue.py:
 This file demonstrates thread synchronization using a Queue.
 - Queue: A thread-safe data structure that handles synchronization internally, avoiding manual locks.
 - Implements a Producer-Consumer model using a shared Queue.
@@ -230,6 +240,7 @@ Advantages:
 - Built-in thread safety, no need for explicit locks.
 - Simplifies inter-thread communication.
 - Scales well with multiple consumers (parallel processing).
+  
 Disadvantages:
 - Consumers run in an infinite loop, which may lead to unnecessary resource usage.
 - Slight overhead due to queue management.
